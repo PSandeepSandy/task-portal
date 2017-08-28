@@ -29,12 +29,11 @@ if(isset($_POST['btn-login']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Coding Cage : Login</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" href="style.css" type="text/css"  />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+<link rel="stylesheet" href="style.css" type="text/css"  />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
 </head>
 <body>
@@ -46,7 +45,7 @@ if(isset($_POST['btn-login']))
         
        <form class="form-signin" method="post" id="login-form">
       
-        <h2 class="form-signin-heading">Log In to WebApp.</h2><hr />
+        <h5 class="form-signin-heading">Log In to Taskit.</h5><hr />
         
         <div id="error">
         <?php
@@ -70,15 +69,15 @@ if(isset($_POST['btn-login']))
         <input type="password" class="form-control" name="txt_password" placeholder="Your Password" />
         </div>
        
-     	<hr />
+     	<br />
         
         <div class="form-group">
-            <button type="submit" name="btn-login" class="btn btn-default">
+            <button type="submit" name="btn-login" class="waves-effect waves-light btn">
                 	<i class="glyphicon glyphicon-log-in"></i> &nbsp; SIGN IN
             </button>
         </div>  
       	<br />
-            <label>Don't have account yet ! <a href="sign-up.php">Sign Up</a></label>
+            
       </form>
 
     </div>
