@@ -44,20 +44,13 @@
         
       </ul>
       <ul class="side-nav" id="mobile-demo">
-        <li><a href="#">My Tasks</a></li>
-        <li><a href="#">All Tasks</a></li>
-        <li><a href="#">Completed Tasks</a></li>
+        <li><a href="#" id="show_own_tasks">My Tasks</a></li>
+        <li><a href="#" id="show_all_tasks">All Tasks</a></li>
+        <li><a href="#" id="show_own_tasks_completed">Completed Tasks</a></li>
         <li><a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
       </ul>
     </div>
   </nav>
-
-
-  
- 
-
-    
-    	
     
 <div class="container-fluid" style="margin-top:80px;">
 	
@@ -66,7 +59,9 @@
     	<h5>welcome : <?php print($userRow['user_name']); ?></h5>
         <hr />
         
-        
+      <br><br>  
+      <h5>Select a tab from above to see tasks allocated</h5>
+      <!--
         <div class="row">
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
@@ -82,9 +77,33 @@
           </div>
         </div>
       </div>
-       
-        
-    
+       -->
+      <script type="text/javascript">
+          
+          $(document).ready(function() {
+            $("#show_own_tasks").click(function() {alert("clicked");
+              jq.ajax({
+                url: "show_stud_own_tasks.php",
+                type: "post",
+                data: {},
+                //datatype: "html",
+                success: function(response){
+                jq(".container").html(response);
+                }
+                
+                });
+
+            });
+            $("#show_all_tasks").click(function() {});
+            $("#show_own_tasks_completed").click(function() {});
+            
+          })
+
+
+
+
+      </script>
+              
     
     </div>
 
