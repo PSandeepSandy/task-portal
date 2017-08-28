@@ -5,23 +5,23 @@ $login = new USER();
 
 if($login->is_loggedin()!="")
 {
-	$login->redirect('student.php');
+  $login->redirect('student.php');
 }
 
 if(isset($_POST['btn-login']))
 {
-	$uname = strip_tags($_POST['txt_uname_email']);
-	$umail = strip_tags($_POST['txt_uname_email']);
-	$upass = strip_tags($_POST['txt_password']);
-		
-	if($login->doLogin($uname,$umail,$upass))
-	{
-		$login->redirect('student.php');
-	}
-	else
-	{
-		$error = "Wrong Details !";
-	}	
+  $uname = strip_tags($_POST['txt_uname_email']);
+  $umail = strip_tags($_POST['txt_uname_email']);
+  $upass = strip_tags($_POST['txt_password']);
+    
+  if($login->doLogin($uname,$umail,$upass))
+  {
+    $login->redirect('student.php');
+  }
+  else
+  {
+    $error = "Wrong Details !";
+  } 
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -40,7 +40,7 @@ if(isset($_POST['btn-login']))
 
 <div class="signin-form">
 
-	<div class="container">
+  <div class="container">
      
         
        <form class="form-signin" method="post" id="login-form">
@@ -49,15 +49,15 @@ if(isset($_POST['btn-login']))
         
         <div id="error">
         <?php
-			if(isset($error))
-			{
-				?>
+      if(isset($error))
+      {
+        ?>
                 <div class="alert alert-danger">
                    <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?> !
                 </div>
                 <?php
-			}
-		?>
+      }
+    ?>
         </div>
         
         <div class="form-group">
@@ -69,14 +69,14 @@ if(isset($_POST['btn-login']))
         <input type="password" class="form-control" name="txt_password" placeholder="Your Password" />
         </div>
        
-     	<br />
+      <br />
         
         <div class="form-group">
             <button type="submit" name="btn-login" class="waves-effect waves-light btn">
-                	<i class="glyphicon glyphicon-log-in"></i> &nbsp; SIGN IN
+                  <i class="glyphicon glyphicon-log-in"></i> &nbsp; SIGN IN
             </button>
         </div>  
-      	<br />
+        <br />
             
       </form>
 

@@ -37,16 +37,16 @@
       <a href="#!" class="brand-logo">Taskit</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">My Tasks</a></li>
-        <li><a href="#">All Tasks</a></li>
-        <li><a href="#">Completed Tasks</a></li>
+        <li><a id="show_own_tasks">My Tasks</a></li>
+        <li><a>All Tasks</a></li>
+        <li><a >Completed Tasks</a></li>
         <li><a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
         
       </ul>
       <ul class="side-nav" id="mobile-demo">
-        <li><a href="#" id="show_own_tasks">My Tasks</a></li>
-        <li><a href="#" id="show_all_tasks">All Tasks</a></li>
-        <li><a href="#" id="show_own_tasks_completed">Completed Tasks</a></li>
+        <li><a >My Tasks</a></li>
+        <li><a >All Tasks</a></li>
+        <li><a >Completed Tasks</a></li>
         <li><a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
       </ul>
     </div>
@@ -60,44 +60,35 @@
         <hr />
         
       <br><br>  
-      <h5>Select a tab from above to see tasks allocated</h5>
-      <!--
-        <div class="row">
-        <div class="col s12 m6">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">Card Title</span>
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a href="#"><i class="zmdi zmdi-check zmdi-hc-3x"></i></a>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-       -->
+      <div id="content"></div>
+      
       <script type="text/javascript">
           
           $(document).ready(function() {
-            $("#show_own_tasks").click(function() {alert("clicked");
-              jq.ajax({
-                url: "show_stud_own_tasks.php",
-                type: "post",
-                data: {},
-                //datatype: "html",
-                success: function(response){
-                jq(".container").html(response);
-                }
-                
-                });
+            $("#show_own_tasks").click(function() {
+        
+        
+        var dataString="";
+        $.ajax({
+            
+            type:'post',
+            url:'mytask.php',
+            data:dataString,
+            cache:false,
+
+            success: function(html){
+                $('#content').html(html);
+
+            }
+        });
+        return false;
+    });
 
             });
             $("#show_all_tasks").click(function() {});
             $("#show_own_tasks_completed").click(function() {});
             
-          })
+    
 
 
 

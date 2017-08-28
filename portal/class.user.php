@@ -19,7 +19,57 @@ class USER
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	
+
+    public function delete_task($task_id){
+		$stmt = $this->conn->prepare("DELETE FROM taskrecord WHERE task_id = $task_id ");
+		$stmt->execute(); 
+	}
+
+    public function total_task($task_id){
+		$stmt = $this->conn->prepare("SELECT * FROM taskrecords WHERE Status = '0' ");
+		$stmt->execute();
+		while($taskRow=$stmt->fetch(PDO::FETCH_ASSOC)){
+
+             echo '<div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              
+              <p>'.$taskRow['Task_desc'].'</p>
+            </div>
+            <div class="card-action">
+              <a href="#"><i class="zmdi zmdi-check zmdi-hc-3x"></i></a>
+              
+            </div>
+          </div>
+        </div>
+      </div>';
+}    
+	}
+
+
+	public function stud_task(){
+		$user_id = $_SESSION['user_session'];
+		$stmt = $this->conn->prepare("SELECT * FROM taskrecord WHERE stud_id=$user_id");
+		$stmt->execute();
+		$taskRow=$stmt->fetch(PDO::FETCH_ASSOC);
+		echo '<div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              
+              <p>'.$taskRow['Task_desc'].'</p>
+            </div>
+            <div class="card-action">
+              <a href="#"><i class="zmdi zmdi-check zmdi-hc-3x"></i></a>
+              
+            </div>
+          </div>
+        </div>
+      </div>';
+	}
+
+
 	public function register($uname,$umail,$upass)
 	{
 		try
