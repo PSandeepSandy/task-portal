@@ -59,7 +59,7 @@
       <ul class="right hide-on-med-and-down">
         <li><a id="show_own_tasks">My Task</a></li>
         <li><a id="show_all_tasks">All Tasks</a></li>
-        <li><a >Completed Tasks</a></li>
+        <li><a id="show_own_tasks_completed">MY Completed Tasks</a></li>
         <li><a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
         
       </ul>
@@ -120,17 +120,26 @@
         });
         return false;
             });
-              
+             
+             $("#show_own_tasks_completed").click(function() {
+              var dataString="";
+        $.ajax({
+            
+            type:'post',
+            url:'completed.php',
+            data:dataString,
+            cache:false,
+
+            success: function(html){
+                $('#content').html(html);
+
+            }
+        });
+        return false;
+             }); 
 
             });
             
-            $("#show_own_tasks_completed").click(function() {});
-            
-
-    
-
-
-
 
       </script>
               
@@ -139,7 +148,7 @@
 
 </div>
 
-<script src="bootstrap/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
   $( document ).ready(function(){
     $(".button-collapse").sideNav();
