@@ -1,7 +1,7 @@
 <?php
 
 	require_once("session.php");
-	
+	require_once("taskfunctions.php");
 	require_once("class.user.php");
 	$auth_user = new USER();
 	
@@ -14,6 +14,7 @@
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,7 +30,9 @@
 
 <title>welcome - <?php print($userRow['user_email']); ?></title>
 </head>
-
+<script type="text/javascript">
+  
+</script>
 <body>
 
 <nav>
@@ -37,7 +40,7 @@
       <a href="#!" class="brand-logo">Taskit</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a id="show_own_tasks">My Tasks</a></li>
+        <li><a >My Tasks</a></li>
         <li><a>All Tasks</a></li>
         <li><a >Completed Tasks</a></li>
         <li><a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
@@ -51,6 +54,13 @@
       </ul>
     </div>
   </nav>
+
+
+  
+ 
+
+    
+    	
     
 <div class="container-fluid" style="margin-top:80px;">
 	
@@ -59,42 +69,25 @@
     	<h5>welcome : <?php print($userRow['user_name']); ?></h5>
         <hr />
         
-      <br><br>  
-      <div id="content"></div>
-      
-      <script type="text/javascript">
-          
-          $(document).ready(function() {
-            $("#show_own_tasks").click(function() {
         
-        
-        var dataString="";
-        $.ajax({
-            
-            type:'post',
-            url:'mytask.php',
-            data:dataString,
-            cache:false,
-
-            success: function(html){
-                $('#content').html(html);
-
-            }
-        });
-        return false;
-    });
-
-            });
-            $("#show_all_tasks").click(function() {});
-            $("#show_own_tasks_completed").click(function() {});
-            
-    
-
-
-
-
-      </script>
+        <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#"><i class="zmdi zmdi-check zmdi-hc-3x"></i></a>
               
+            </div>
+          </div>
+        </div>
+      </div>
+       
+        
+    
     
     </div>
 
