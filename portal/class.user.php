@@ -1,3 +1,4 @@
+
 <?php
 
 require_once('dbconfig.php');
@@ -19,7 +20,78 @@ class USER
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	
+
+    public function delete_task($task_id){
+		$stmt = $this->conn->prepare("DELETE FROM taskrecord WHERE task_id = $task_id ");
+		$stmt->execute(); 
+	}
+    
+
+	public function comp_task($task_id){
+		$stmt = $this->conn->prepare("UPDATE taskrecord SET Status='1' where Task_id=$task_id");
+		$stmt->execute(); 
+	}
+
+    public function total_task(){
+		$stmt = $this->conn->prepare("SELECT * FROM taskrecord WHERE Status = '0' ");
+		$stmt->execute();
+		while($taskRow=$stmt->fetch(PDO::FETCH_ASSOC)){
+
+             echo '<div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              
+              <p>'.$taskRow['Task_desc'].'</p>
+            </div>
+            
+          </div>
+        </div>
+      </div>';
+}    
+	}
+
+
+	public function stud_task(){
+		$user_id = $_SESSION['user_session'];
+		$stmt = $this->conn->prepare("SELECT * FROM taskrecord WHERE stud_id=$user_id and Status='0' ");
+		$stmt->execute();
+		while($taskRow=$stmt->fetch(PDO::FETCH_ASSOC)){
+		return '<div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              
+              <p>'.$taskRow['Task_desc'].'</p>
+            </div>
+            <div class="card-action">
+               <button onclick="Completed('.$taskRow['Task_id'].');" class="btn waves-effect waves-light"><i class="zmdi zmdi-check zmdi-hc-3x"></i></button>
+              
+            </div>
+          </div>
+        </div>
+      </div>';
+  };
+	}
+	public function studcomp_task(){
+		$user_id = $_SESSION['user_session'];
+		$stmt = $this->conn->prepare("SELECT * FROM taskrecord WHERE stud_id=$user_id and Status='1' ");
+		$stmt->execute();
+		while($taskRow=$stmt->fetch(PDO::FETCH_ASSOC)){
+		return '<div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              
+              <p>'.$taskRow['Task_desc'].'</p>
+            </div>
+          </div>
+        </div>
+      </div>';
+  };
+	}
+
+
 	public function register($uname,$umail,$upass)
 	{
 		try
