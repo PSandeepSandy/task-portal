@@ -20,6 +20,40 @@ class USER
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
+    
+    public function stud_list(){
+    	$user_id = $_SESSION['user_session'];
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE avail = '0' and type= 's' ");
+		$stmt->execute();
+		while($taskRow=$stmt->fetch(PDO::FETCH_ASSOC)){
+
+             echo '<div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              
+              <p>'.$taskRow['fullname'].'
+              <hr>
+                     <button onclick="Assign('.$taskRow['user_id'].','.$user_id.')" class="btn waves-effect waves-light" style="" >assign</button>
+              </p>
+              
+
+              </div>
+            
+          </div>
+        </div>
+      </div>';
+}    
+    }
+    
+    public function assign_task($sid, $pid, $task ){
+        $stmt = $this->conn->prepare("INSERT INTO taskrecord(Prof_id, Stud_id, Task_desc, Status) VALUES($pid, $sid, '$task', '0')");
+        $stmt2 = $this->conn->prepare("UPDATE users SET avail='1' where user_id=$sid");
+		$stmt->execute();
+        $stmt2->execute();
+
+    
+    }
 
     public function delete_task($task_id){
 		$stmt = $this->conn->prepare("DELETE FROM taskrecord WHERE task_id = $task_id ");
@@ -28,8 +62,12 @@ class USER
     
 
 	public function comp_task($task_id){
+		$user_id = $_SESSION['user_session'];
 		$stmt = $this->conn->prepare("UPDATE taskrecord SET Status='1' where Task_id=$task_id");
+		$stmt2 = $this->conn->prepare("UPDATE users SET avail='0' where user_id=$user_id");
 		$stmt->execute(); 
+	    $stmt2->execute(); 
+
 	}
 
     public function total_task(){

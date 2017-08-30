@@ -14,6 +14,27 @@
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
+<script type="text/javascript">
+  function Assign(sid, pid){
+          var at=$('#taskarea').val();
+          var dataString='sid='+sid+'&pid='+pid+'&task='+at;
+        
+        $.ajax({
+            
+            type:'post',
+            url:'assigntask.php',
+            data:dataString,
+            cache:false,
+
+            success: function(html){
+                $('#content').html(html);
+
+            }
+        });
+        return false;
+
+        }  
+</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -36,7 +57,7 @@
       <a href="#!" class="brand-logo">Taskit</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Assign Tasks</a></li>
+        <li><a id="assign_task">Assign Tasks</a></li>
         <li><a href="#">Assigned Tasks</a></li>
         <li><a href="#">Completed Tasks</a></li>
 
@@ -67,17 +88,20 @@
         <div class="row">
     <form class="col l12">
       <div class="row">
-        <div class="input-field col l6 m12 s12">
-         <h5>Available Students</h5>
-        </div>
+        
         <div class="input-field col l6 m12 s12">
           <i class="material-icons prefix">mode_edit</i>
-          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+          <textarea id="taskarea" class="materialize-textarea"></textarea>
           <label for="icon_prefix2">Write Task</label>
+
         
 
       </div>
       
+          <div class="input-field col l6 m12 s12">
+         <h5>Assign Task to </h5>
+         <div id="content"></div>
+        </div>
     </form>
   </div>
        
@@ -87,8 +111,70 @@
     </div>
 
 </div>
+<script type="text/javascript">
+          
+          $(document).ready(function() {
+        
+        
+      
 
-<script src="bootstrap/js/bootstrap.min.js"></script>
+      $("#assign_task").click(function() {
+        var dataString="";
+        $.ajax({
+            
+            type:'post',
+            url:'availstud.php',
+            data:dataString,
+            cache:false,
+
+            success: function(html){
+                $('#content').html(html);
+
+            }
+        });
+        return false;
+      });
+    
+
+            $("#show_all_tasks").click(function() {
+        
+        var dataString="";
+        $.ajax({
+            
+            type:'post',
+            url:'alltask.php',
+            data:dataString,
+            cache:false,
+
+            success: function(html){
+                $('#content').html(html);
+
+            }
+        });
+        return false;
+            });
+             
+             $("#show_own_tasks_completed").click(function() {
+              var dataString="";
+        $.ajax({
+            
+            type:'post',
+            url:'completed.php',
+            data:dataString,
+            cache:false,
+
+            success: function(html){
+                $('#content').html(html);
+
+            }
+        });
+        return false;
+             }); 
+
+            });
+            
+
+      </script>
 <script type="text/javascript">
   $( document ).ready(function(){
     $(".button-collapse").sideNav();
