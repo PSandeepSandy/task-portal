@@ -36,7 +36,24 @@
 
         }
 
-    
+    function Completed(data,stud_id){
+
+          var dataString='task_id='+data+'&stud_id='+stud_id;
+        $.ajax({
+            
+            type:'post',
+            url:'comptask2.php',
+            data:dataString,
+            cache:false,
+
+            success: function(html){
+                $('#content').html(html);
+
+            }
+        });
+        return false;
+
+        }  
 </script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
