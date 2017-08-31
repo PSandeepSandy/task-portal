@@ -1,4 +1,4 @@
 git reset --mixed origin/master
 git add --all
-git commit -m "some prof page parts completed!"
+git commit -m "only delete edit part left in prof page and a bug in ajax assign task. "
 git push -u origin master

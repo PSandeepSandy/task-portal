@@ -29,11 +29,14 @@
             success: function(html){
                 $('#content').html(html);
 
+
             }
         });
         return false;
 
-        }  
+        }
+
+    
 </script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -58,8 +61,8 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a id="assign_task">Assign Tasks</a></li>
-        <li><a href="#">Assigned Tasks</a></li>
-        <li><a href="#">Completed Tasks</a></li>
+        <li><a id="assignd">Assigned Tasks</a></li>
+        <li><a id="comptask">Completed Tasks</a></li>
 
 
         <li><a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
@@ -99,7 +102,7 @@
       </div>
       
           <div class="input-field col l6 m12 s12">
-         <h5>Assign Task to </h5>
+         
          <div id="content"></div>
         </div>
     </form>
@@ -115,6 +118,19 @@
           
           $(document).ready(function() {
         
+        var dataString="";
+        $.ajax({
+            
+            type:'post',
+            url:'availstud.php',
+            data:dataString,
+            cache:false,
+
+            success: function(html){
+                $('#content').html(html);
+
+            }
+        });
         
       
 
@@ -136,13 +152,12 @@
       });
     
 
-            $("#show_all_tasks").click(function() {
-        
-        var dataString="";
+           $( "#taskarea" ).focus(function() {
+  var dataString="";
         $.ajax({
             
             type:'post',
-            url:'alltask.php',
+            url:'availstud.php',
             data:dataString,
             cache:false,
 
@@ -152,14 +167,16 @@
             }
         });
         return false;
-            });
+});
              
-             $("#show_own_tasks_completed").click(function() {
+              
+
+             $("#assignd").click(function() {
               var dataString="";
         $.ajax({
             
             type:'post',
-            url:'completed.php',
+            url:'profassgn.php',
             data:dataString,
             cache:false,
 
@@ -170,6 +187,24 @@
         });
         return false;
              }); 
+        
+        $("#comptask").click(function() {
+              var dataString="";
+        $.ajax({
+            
+            type:'post',
+            url:'profcomp.php',
+            data:dataString,
+            cache:false,
+
+            success: function(html){
+                $('#content').html(html);
+
+            }
+        });
+        return false;
+             });
+
 
             });
             

@@ -28,13 +28,13 @@ class USER
 		while($taskRow=$stmt->fetch(PDO::FETCH_ASSOC)){
 
              echo '<div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m12 l12">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               
               <p>'.$taskRow['fullname'].'
               <hr>
-                     <button onclick="Assign('.$taskRow['user_id'].','.$user_id.')" class="btn waves-effect waves-light" style="" >assign</button>
+                     <button onclick="Assign('.$taskRow['user_id'].','.$user_id.')" class="btn waves-effect waves-light  blue lighten-2" style="" >assign</button>
               </p>
               
 
@@ -116,8 +116,47 @@ class USER
 		$stmt = $this->conn->prepare("SELECT * FROM taskrecord WHERE stud_id=$user_id and Status='1' ");
 		$stmt->execute();
 		while($taskRow=$stmt->fetch(PDO::FETCH_ASSOC)){
-		return '<div class="row">
+		echo '<div class="row">
         <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              
+              <p>'.$taskRow['Task_desc'].'</p>
+            </div>
+          </div>
+        </div>
+      </div>';
+  };
+	}
+
+	public function profassgn_task(){
+		$user_id = $_SESSION['user_session'];
+		$stmt = $this->conn->prepare("SELECT * FROM taskrecord WHERE prof_id=$user_id and Status='0' ");
+		$stmt->execute();
+		while($taskRow=$stmt->fetch(PDO::FETCH_ASSOC)){
+		echo '<div class="row">
+        <div class="col s12 m12 l12">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              
+              <p>'.$taskRow['Task_desc'].'</p>
+              <hr>
+              <button onclick="" class="btn waves-effect waves-light " style="" >edit</button>
+              <button onclick="" class="btn waves-effect waves-light red darken-2" style="" >delete</button>
+            </div>
+          </div>
+        </div>
+      </div>';
+  };
+	}
+
+	public function profcomp_task(){
+		$user_id = $_SESSION['user_session'];
+		$stmt = $this->conn->prepare("SELECT * FROM taskrecord WHERE prof_id=$user_id and Status='1' ");
+		$stmt->execute();
+		while($taskRow=$stmt->fetch(PDO::FETCH_ASSOC)){
+		echo '<div class="row">
+        <div class="col s12 m12 l12">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               

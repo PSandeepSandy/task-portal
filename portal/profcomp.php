@@ -4,7 +4,7 @@
 	
 	$user = new USER();
 	$stud_id = $_SESSION['user_session'];
-	echo "<h5>Assign Task to </h5>";
-	echo $user->stud_list();
+	echo "<h5>Completed Tasks</h5>";
+	echo $user->profcomp_task();
     
 ?>

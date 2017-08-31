@@ -8,6 +8,7 @@
 	$pid=$_POST['pid'];
 	$task=$_POST['task'];
 	$user->assign_task($sid, $pid, $task );
+	
 	echo $user->stud_list();
 	
 ?>
